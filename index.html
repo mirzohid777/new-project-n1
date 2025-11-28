@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunlik Daromad Tizimi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="mean.css">
+</head>
+
+<body>
+    <div class="notification-banner" id="notificationBanner">
+        <button class="close-notif" id="closeNotif">×</button>
+        <div class="notification-text" id="notificationText"></div>
+    </div>
+
+    <button class="mobile-profile-btn" id="mobileProfileBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+        </svg>
+    </button>
+
+    <div class="mobile-sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="header">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://click.uz/click/images/premium/mockup.png  " alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://click.uz/click/images/premium/mockup.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://click.uz/click/images/premium/mockup.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://click.uz/click/images/premium/mockup.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://click.uz/click/images/premium/mockup.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+            </div>
+
+            <div class="container-new1">
+                <h1>🏠 Kommunal To'lovlar Boshqaruvi</h1>
+
+                <div class="utilities-grid" id="utilitiesGrid">
+                </div>
+
+                <button class="add-button" id="addUtilityBtn">+</button>
+            </div>
+
+            <div id="addModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close" id="closeAddModal">&times;</span>
+                        <h2>Yangi To'lov Qo'shish</h2>
+                    </div>
+                    <form id="addUtilityForm">
+                        <div class="form-group">
+                            <label>Tolov Turi:</label>
+                            <select id="utilityType" required>
+                                <option value="">Tanlang...</option>
+                                <option value="Issiq Suv">💧 Issiq Suv</option>
+                                <option value="Sovuq Suv">💦 Sovuq Suv</option>
+                                <option value="Elektr">⚡ Elektr</option>
+                                <option value="Gaz">🔥 Gaz</option>
+                                <option value="Internet">📡 Internet</option>
+                                <option value="Telefon">📞 Telefon</option>
+                                <option value="Axlat">🗑️ Axlat</option>
+                                <option value="Uy-Joy">🏢 Uy-Joy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Uy Raqami:</label>
+                            <input type="text" id="houseNumber" placeholder="Masalan: 12" required>
+                        </div>
+                        <div class="form-group">
+                            <label>To'lov Summasi (so'm):</label>
+                            <input type="number" id="amount" placeholder="0" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Qo'shish</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="historyModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close" id="closeHistoryModal">&times;</span>
+                        <h2 id="historyTitle">To'lov Tarixi</h2>
+                    </div>
+                    <div class="payment-history" id="paymentHistory">
+                    </div>
+                    <button class="btn btn-primary" id="addPaymentBtn">Yangi To'lov Qo'shish</button>
+                </div>
+            </div>
+
+            <div id="newPaymentModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close" id="closeNewPaymentModal">&times;</span>
+                        <h2 id="newPaymentTitle">To'lov Qo'shish</h2>
+                    </div>
+                    <form id="newPaymentForm">
+                        <div class="form-group">
+                            <label>To'lov Summasi (so'm):</label>
+                            <input type="number" id="newPaymentAmount" placeholder="0" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">To'lovni Saqlash</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="balance-card">
+                <h2 id="balanceLabel">Umumiy Balans</h2>
+                <div class="balance-amount" id="totalBalance">0 so'm</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="incomeLabel">Daromad</h3>
+                    <div class="stat-value income" id="totalIncome">0 so'm</div>
+                </div>
+                <div class="stat-card">
+                    <h3 id="expenseLabel">Xarajat</h3>
+                    <div class="stat-value expense" id="totalExpense">0 so'm</div>
+                </div>
+                <div class="stat-card">
+                    <h3 id="remainingLabel">Qoldiq</h3>
+                    <div class="stat-value" id="totalRemaining" style="color: var(--accent-color);">0 so'm</div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 id="formTitle">Yangi Kiritma</h2>
+                <div class="form-group">
+                    <label for="description" id="descLabel">Tavsif</label>
+                    <input type="text" id="description" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="amount" id="amountLabel">Summa</label>
+                    <input type="number" id="amount" placeholder="0">
+                </div>
+                <div>
+                    <button class="btn-income" id="btnIncome">+ Daromad</button>
+                    <button class="btn-expense" id="btnExpense">- Xarajat</button>
+                    <button class="btn-payment" id="btnPayment">💰 Sarqi/To'lov</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 id="filterTitle">Qidirish va Filtr</h3>
+                <input type="text" class="search-box" id="searchBox" placeholder="">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all" id="filterAll">Hammasi</button>
+                    <button class="filter-btn" data-filter="income" id="filterIncome">Daromad</button>
+                    <button class="filter-btn" data-filter="expense" id="filterExpense">Xarajat</button>
+                    <button class="filter-btn" data-filter="today" id="filterToday">Bugun</button>
+                    <button class="filter-btn" data-filter="week" id="filterWeek">Bu hafta</button>
+                    <button class="filter-btn" data-filter="month" id="filterMonth">Bu oy</button>
+                </div>
+            </div>
+
+            <div class="transactions">
+                <h2 id="historyTitle">Tarix</h2>
+                <div id="transactionList" class="empty-state">
+                    <p id="emptyText">Hali hech narsa yo'q</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <button class="close-sidebar-btn" id="closeSidebarBtn">×</button>
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+
+                <h2 id="profileTitle">Mening Profilim</h2>
+
+                <div class="today-income-section">
+                    <h3 id="todayIncomeLabel">Bugungi Kirim</h3>
+                    <div class="today-value" id="todayIncomeValue">0 so'm</div>
+                </div>
+
+                <div class="today-income-section">
+                    <h3 id="todayExpenseLabel">Bugungi Chiqim</h3>
+                    <div class="today-value expense" id="todayExpenseValue">0 so'm</div>
+                </div>
+
+                <div class="settings-group">
+                    <h3 id="themeLabel">Rang Tanlash</h3>
+                    <div class="theme-toggle">
+                        <button class="theme-btn active" id="lightTheme">☀️ <span id="lightText">Oq</span></button>
+                        <button class="theme-btn" id="darkTheme">🌙 <span id="darkText">Qora</span></button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3 id="langLabel">Til Tanlash</h3>
+                    <select class="lang-select" id="languageSelect">
+                        <option value="uz">O'zbekcha</option>
+                        <option value="ru">Русский</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="mean.js"></script>
+</body>
+
+</html>
